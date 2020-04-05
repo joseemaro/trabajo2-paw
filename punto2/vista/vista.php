@@ -29,7 +29,6 @@
             </select> <br>
             Fecha de turno: <input type="date" name="fecha_turno"><br>
             Horiario de turno(hh:min): <input type="time" name="horario_turno" required><br>
-            Adjunto <input type="file" name="adjunto" accept="image/jpeg, image/x-png"><br>
             <input type="submit" value="Enviar" />
             <input type="reset" value="Limpiar"  />
         </form>
