@@ -1,6 +1,6 @@
 <html>
     <body>
-        <form action="controler/controlvalidacion.php" method="post">
+        <form action="controler/controlvalidacion.php" method="get">
             Nombre: <input type="text" name="nombre" minlength="3" maxlength="30" required pattern="[A-Za-z]+"><br>
             Email:  <input type="email" name="email" required><br>
             Telefono: <input type="tel" name="telefono" required><br>
@@ -29,7 +29,6 @@
             </select> <br>
             Fecha de turno: <input type="date" name="fecha_turno"><br>
             Horiario de turno(hh:min): <input type="time" name="horario_turno" required><br>
-            Adjunto <input type="file" name="adjunto" accept="image/jpeg, image/x-png"><br>
             <input type="submit" value="Enviar" />
             <input type="reset" value="Limpiar"  />
         </form>
