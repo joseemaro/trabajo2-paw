@@ -250,13 +250,16 @@ class Appointment
             $booleano= false;
         }
 
-        /*if (isset($_POST["adjunto"])) {
-            $extension = pathinfo($_FILES["adjunto"]["name"], PATHINFO_EXTENSION);
-            if($extension != "JPG" && $extension != "PNG" ) {
+        var_dump($this->getAdjunto());
+        if (!empty($this->getAdjunto())) {
+
+            /*$extension = exif_imagetype("adjunto");
+                //pathinfo($_FILES["adjunto"]["name"], PATHINFO_EXTENSION);
+            if($extension != IMAGETYPE_JPEG && $extension != IMAGETYPE_PNG ) {
                 $msg = "Solo se permite archivos con extensión JPG y PNG.<br>";
                 $booleano = false;
             }
-        }*/
+        }
 
         /*if ($booleano) {
             $msg= "SE REGISTRO EL TURNO";
@@ -265,6 +268,8 @@ class Appointment
             $msg .= "NO SE REGISTRO EL TURNO";
             return $msg;
         }*/
+
+        }
 
         if ($booleano) {
             $msg = "SE REGISTRO EL TURNO <br>";

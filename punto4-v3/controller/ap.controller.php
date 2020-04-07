@@ -25,9 +25,10 @@
             $appointment->setAltura($_POST["altura"]);
             $appointment->setColorPelo($_POST["color"]);
             $appointment->setHorarioTurno($_POST["horario_turno"]);
+            $appointment->setAdjunto($_POST["adjunto"]);
 
             $respuesta = $appointment->validar();
-            include 'view/index.view.php';
+            include 'view/result.php';
             /*echo $respuesta;*/
         }
 

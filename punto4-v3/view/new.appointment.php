@@ -8,6 +8,15 @@
     <title>Sistema de turnos</title>
     </head>
     <body>
+    <header>
+        <nav>
+            <ul>
+                <li> <a href="/">Inicio</a> </li>
+                <li> <a href="/new_appointment">Solicitar turno</a> </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
         <form action="/save_appointment" method="post">
             <label> Nombre: <input type="text" name="nombre" minlength="3" maxlength="30" required pattern="[A-Za-z]+"> </label><br>
             <label> Email:  <input type="email" name="email" required> </label><br>
@@ -42,6 +51,6 @@
             <input type="submit" value="Enviar" />
             <input type="reset" value="Limpiar"  />
         </form>
-        
+    </main>
     </body>
 </html>

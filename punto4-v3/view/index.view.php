@@ -11,12 +11,10 @@
     <header>
         <nav>
             <ul>
+                <li> <a href="/">Inicio</a> </li>
                 <li> <a href="/new_appointment">Solicitar turno</a> </li>
             </ul>
         </nav>
     </header>
-    <main>
-        <p> <?= $respuesta ?></p>
-    </main>
 </body>
 </html>
