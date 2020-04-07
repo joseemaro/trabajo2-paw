@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main>
-        <form action="/save_appointment" method="post">
+        <form action="/save_appointment" method="post" enctype="multipart/form-data">
             <label> Nombre: <input type="text" name="nombre" minlength="3" maxlength="30" required pattern="[A-Za-z]+"> </label><br>
             <label> Email:  <input type="email" name="email" required> </label><br>
             <label> Telefono: <input type="tel" name="telefono" required> </label><br>

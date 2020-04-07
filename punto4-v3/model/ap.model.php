@@ -250,6 +250,26 @@ class Appointment
             $booleano= false;
         }
 
+        echo "<pre>";
+        var_dump($_FILES);
+        /*
+            array(1) {
+              ["adjunto"]=>
+              array(5) {
+                ["name"]=>
+                string(31) "http-request-response-basic.png"
+                ["type"]=>
+                string(9) "image/png" <- COMPAREN CONTRA ESTE CAMPO
+                ["tmp_name"]=>
+                string(14) "/tmp/phpeiU9V1"
+                ["error"]=>
+                int(0)
+                ["size"]=>
+                int(20064)
+              }
+}
+        */
+
         var_dump($this->getAdjunto());
         if (!empty($this->getAdjunto())) {
 
