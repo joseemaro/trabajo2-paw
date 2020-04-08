@@ -45,7 +45,7 @@
                 <option>colorado</option>
                 <option>castanio</option>
             </select> </label><br>
-        <label> Fecha de turno: <input type="date" name="fecha_turno"> </label><br>
+        <label> Fecha de turno: <input type="date" name="fecha_turno" required> </label><br>
         <label> Horiario de turno(hh:min): <input type="time" name="horario_turno" required> </label><br>
         <input type="submit" value="Enviar" />
         <input type="reset" value="Limpiar"  />

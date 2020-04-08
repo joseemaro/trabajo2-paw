@@ -16,7 +16,6 @@ class Appointment
     private $horario_turno;
 
     public function __construct() {
-
     }
 
     /**
@@ -179,22 +178,6 @@ class Appointment
         $this->horario_turno = $horario_turno;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAdjunto()
-    {
-        return $this->adjunto;
-    }
-
-    /**
-     * @param mixed $adjunto
-     */
-    public function setAdjunto($adjunto)
-    {
-        $this->adjunto = $adjunto;
-    }
-
     public function validar()
     {
         $booleano = true;
@@ -212,20 +195,30 @@ class Appointment
             $msg .= "No se ha indicado telefono o el formato no es correcto <br>";
             $booleano= false;
         }
-        if(!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100){
+        if(!is_null($this->getEdad()) && (!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100)){
             $msg .= "el formato de la edad no es correcto <br>";
             $booleano= false;
         }
-        if(!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20){
+        if(!is_null($this->getTallaCalzado()) && (!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20)){
             $msg .= "el formato de la talla del calzado no es correcto <br>";
             $booleano= false;
         }
-        if(!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100){
+        if(!is_null($this->getAltura()) && (!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100)){
             $msg .= "el formato de la altura no es correcto <br>";
             $booleano= false;
         }
-        if ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio"){
+        //falta validar
+        if(is_null($this->getFechaNacimiento())){
+            $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
+            $booleano= false;
+        }
+        if (!is_null($this->getColorPelo()) && ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio")){
             $msg .= "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
+            $booleano= false;
+        }
+        //falta validar
+        if(is_null($this->getFechaTurno())){
+            $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
         }
         $pattern="/^([0][8-9]|[1][0-7])[\:]([0-5][0-9])$/";
@@ -235,9 +228,9 @@ class Appointment
         }
 
         if ($booleano) {
-            $msg = "SE REGISTRO EL TURNO <br>";
+            $msg = "Se registró el turno <br>";
             $msg .= "Gracias " . $this->getNombre() . " la fecha de su turno es el " . $this->getFechaTurno() . " a las " . $this->getHorarioTurno() . " horas. Lo esperamos <br>";
-            $msg .= "------------------------- <br>";
+            $msg .= "----------------------------------------------------------------------------------------------------------------------------- <br>";
             $msg .= "Nombre: " . $this->getNombre() . "<br>";
             $msg .= "Email: " . $this->getEmail() . "<br>";
             $msg .= "Telefono: " . $this->getTelefono() . "<br>";
@@ -246,7 +239,7 @@ class Appointment
             $msg .= "Horario del turno: " . $this->getHorarioTurno() . "<br>";
             return $msg;
         }else{
-            $msg .= "NO SE REGISTRO EL TURNO";
+            $msg .= "No se registró el turno";
             return $msg;
         }
     }
