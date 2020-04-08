@@ -1,11 +1,11 @@
 <?php
-    include 'vista/vista.php';
-    require_once("vista/vista.php");
+    include 'view/view.php';
+    require_once("view/view.php");
 
 
     //si presiono - valida
-    /*include 'modelo/validar.php';
-    require_once("modelo/validar.php");
+    /*include 'model/validar.php';
+    require_once("model/validar.php");
     $val= new validar();
     $respuesta = $val-> validarr();*/
 

@@ -14,26 +14,10 @@ class Appointment
     private $color_pelo;
     private $fecha_turno;
     private $horario_turno;
-    private $adjunto;
 
     public function __construct() {
 
     }
-
-    /*public function construct($nombre, $email, $telefono, $edad, $talla_calzado, $altura, $fecha_nacimiento, $color_pelo, $fecha_turno, $horario_turno, $adjunto)
-    {
-        $this->setNombre($nombre);
-        $this->setEmail($email);
-        $this->setTelefono($telefono);
-        $this->setEdad($edad);
-        $this->setTallaCalzado($talla_calzado);
-        $this->setAltura($altura);
-        $this->setFechaNacimiento($fecha_nacimiento);
-        $this->setColorPelo($color_pelo);
-        $this->setFechaTurno($fecha_turno);
-        $this->setHorarioTurno($horario_turno);
-        $this->setAdjunto($adjunto);
-    }*/
 
     /**
      * @return mixed
@@ -221,59 +205,33 @@ class Appointment
             $booleano= false;
         }
         if(!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL) || is_null($this->email) ){
-            $msg = "No se ha indicado email o el formato no es correcto <br>";
+            $msg .= "No se ha indicado email o el formato no es correcto <br>";
             $booleano= false;
         }
         if(!filter_var($this->getTelefono(), FILTER_VALIDATE_INT) || is_null($this->telefono)){
-            $msg = "No se ha indicado telefono o el formato no es correcto <br>";
+            $msg .= "No se ha indicado telefono o el formato no es correcto <br>";
             $booleano= false;
         }
         if(!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100){
-            $msg = "el formato de la edad no es correcto <br>";
+            $msg .= "el formato de la edad no es correcto <br>";
             $booleano= false;
         }
         if(!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20){
-            $msg = "el formato de la talla del calzado no es correcto <br>";
+            $msg .= "el formato de la talla del calzado no es correcto <br>";
             $booleano= false;
         }
         if(!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100){
-            $msg = "el formato de la altura no es correcto <br>";
+            $msg .= "el formato de la altura no es correcto <br>";
             $booleano= false;
         }
         if ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio"){
-            $msg = "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
+            $msg .= "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
             $booleano= false;
         }
         $pattern="/^([0][8-9]|[1][0-7])[\:]([0-5][0-9])$/";
         if(is_null($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno())){
-            $msg = "No se ha indicado el horario o el formato no es correcto <br>";
+            $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
-        }
-
-        /*
-            array(1) {
-              ["adjunto"]=>
-              array(5) {
-                ["name"]=>
-                string(31) "http-request-response-basic.png"
-                ["type"]=>
-                string(9) "image/png" <- COMPAREN CONTRA ESTE CAMPO
-                ["tmp_name"]=>
-                string(14) "/tmp/phpeiU9V1"
-                ["error"]=>
-                int(0)
-                ["size"]=>
-                int(20064)
-              }
-}
-        */
-
-        if (!empty($_FILES["adjunto"]["name"])) {
-            $extension = $_FILES["adjunto"]["type"];
-            if ($extension != 'image/png') {
-                $msg = "Solo se permite archivos con extensión JPG y PNG.<br>";
-                $booleano = false;
-            }
         }
 
         if ($booleano) {

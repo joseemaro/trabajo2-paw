@@ -1,5 +1,5 @@
 <?php
-    //include 'modelo/validar.php';
+    //include 'model/validar.php';
     require_once("../modelo/validar.php");
 
     $val= new validar();

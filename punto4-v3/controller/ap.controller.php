@@ -1,11 +1,9 @@
 <?php
-    //include 'model/ap.model.php';
     namespace App\controller;
     use App\model\Appointment;
 
     class ApController
     {
-        //public $appointment;
         public function index()
         {
             include 'view/index.view.php';
@@ -23,13 +21,14 @@
             $appointment->setEdad($_POST["edad"]);
             $appointment->setTallaCalzado($_POST["talla"]);
             $appointment->setAltura($_POST["altura"]);
+            $appointment->setFechaNacimiento($_POST["fecha_nacimiento"]);
             $appointment->setColorPelo($_POST["color"]);
+            $appointment->setFechaTurno($_POST["fecha_turno"]);
             $appointment->setHorarioTurno($_POST["horario_turno"]);
             $appointment->setAdjunto($_POST["adjunto"]);
 
             $respuesta = $appointment->validar();
             include 'view/result.php';
-            /*echo $respuesta;*/
         }
 
     }

@@ -1,7 +1,7 @@
 <?php
     $bol=false;
 
-    //require_once("../modelo/validarimagen.php");
+    //require_once("../model/validarimagen.php");
 
     //veo si no ingreso imagen
     if(!empty($_POST["archivo"])){
