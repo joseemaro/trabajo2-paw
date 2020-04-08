@@ -6,12 +6,15 @@
     <br> <br>  
 
     <?php
+        //TOMA EL ARCHIVO JSON
         $s = file_get_contents('../datos.json');
         if (!empty($s)){
             $ss = json_decode($s, true);
             foreach ($ss as $turn){
                 foreach($turn as $arr){
+                    //PARA CADA TURNO SE MUESTRAN LOS DATOS PEDIDOS
                     echo "INFORMACION DEL TURNO= <br><br>";
+                   // echo "id: " . $arr['id'] . "<br>";
                     echo "Fecha del turno: " . $arr['fecha_turno'] . "<br>";
                     echo "Horario: " . $arr['horario']. "<br>";
                     echo "Nombre del paciente: " . $arr['nombre']. "<br>";
@@ -22,16 +25,10 @@
                 }
                 
             }
+        }else {
+            echo "no hay turnos registrados";
         }
 
-        /*$s = file_get_contents('../datos.json');
-        print_r($s);
-        $ss = json_decode($s, true);
-        if (!empty($ss)){
-            var_dump($ss);
-        }else{
-        echo "no hay turnos registrados";
-        }*/
     ?>
 
     </body>

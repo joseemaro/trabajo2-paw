@@ -14,7 +14,7 @@
 
         public function __construct($nom, $ema, $tel, $edad, $talla, $altura, $fecha_nacimiento, $color, $fecha_turno, $horario)
         {
-            $this -> id++;
+            $this -> id= $ema.$fecha_turno.$horario;
             $this -> nombre = $nom;
             $this -> email = $ema;
             $this -> telefono = $tel;

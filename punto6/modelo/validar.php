@@ -5,14 +5,14 @@
         class  validar{
 
             public function __construct()
-            {             
-                
+            {                
             }
 
             public function validarr(){
                 $booleano = true;
                 $msg = "";
 
+                //VALIDO CADA CAMPO
                 if(empty($_POST["nombre"])) {
                     $msg = "El nombre es requerido <br>";
                     $booleano= false;
@@ -46,10 +46,12 @@
                     $msg = "No se ha indicado el horario o el formato no es correcto <br>";
                     $booleano= false;
                 }
+
+                //SI TODOS LOS CAMPOS ESTAN OK
             
                 if ($booleano) {
 
-                    echo "SE REGISTRO EL TURNO <br>";
+                    $msg .= "SE REGISTRO EL TURNO <br>";
                     $msg .= "Gracias " . $_POST["nombre"] . " la fecha de su turno es el " . $_POST["fecha_turno"] . " a las " . $_POST["horario_turno"] . " horas. Lo esperamos <br>";
                     $msg .= "------------------------- <br>";
                     $msg .= "Nombre: " . $_POST["nombre"] . "<br>";
