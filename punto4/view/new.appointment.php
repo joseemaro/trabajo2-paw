@@ -21,7 +21,7 @@
             <label> Nombre: <input type="text" name="nombre" minlength="3" maxlength="30" required pattern="[A-Za-z]+"> </label><br>
             <label> Email:  <input type="email" name="email" required> </label><br>
             <label> Telefono: <input type="tel" name="telefono" required> </label><br>
-            <label> Edad: <input type="text" name="edad" maxlength="2" max="99" > </label><br>
+            <label> Edad: <input type="text" name="edad" maxlength="2" max="99"> </label><br>
             <label> Talla de calzado: <input type="text" name="talla" maxlength="2"></label><br>
             <label> Altura : <input type="range" name="altura" min="100" max="200" step="10" value="150" list="tickmarks"> </label><br>
             <datalist id="tickmarks">
@@ -45,7 +45,7 @@
                     <option>colorado</option>
                     <option>castanio</option>
                 </select> </label><br>
-            <label> Fecha de turno: <input type="date" name="fecha_turno"> </label><br>
+            <label> Fecha de turno: <input type="date" name="fecha_turno" required> </label><br>
             <label> Horiario de turno(hh:min): <input type="time" name="horario_turno" required> </label><br>
             <label> Adjunto <input type="file" name="adjunto" accept="image/jpeg, image/x-png"> </label><br>
             <input type="submit" value="Enviar" />

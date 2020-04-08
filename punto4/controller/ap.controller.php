@@ -25,7 +25,9 @@
             $appointment->setColorPelo($_POST["color"]);
             $appointment->setFechaTurno($_POST["fecha_turno"]);
             $appointment->setHorarioTurno($_POST["horario_turno"]);
-            $appointment->setAdjunto($_POST["adjunto"]);
+            if (isset($_POST["adjunto"])) {
+                $appointment->setAdjunto($_POST["adjunto"]);
+            }
 
             $respuesta = $appointment->validar();
             include 'view/result.php';
