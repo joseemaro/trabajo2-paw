@@ -14,27 +14,11 @@ class Appointment
     private $color_pelo;
     private $fecha_turno;
     private $horario_turno;
-    private $adjunto;
+    private $diagnostico;
     private $target_dir = __DIR__ . "\..\uploads\\";
 
     public function __construct() {
-
     }
-
-    /*public function construct($nombre, $email, $telefono, $edad, $talla_calzado, $altura, $fecha_nacimiento, $color_pelo, $fecha_turno, $horario_turno, $adjunto)
-    {
-        $this->setNombre($nombre);
-        $this->setEmail($email);
-        $this->setTelefono($telefono);
-        $this->setEdad($edad);
-        $this->setTallaCalzado($talla_calzado);
-        $this->setAltura($altura);
-        $this->setFechaNacimiento($fecha_nacimiento);
-        $this->setColorPelo($color_pelo);
-        $this->setFechaTurno($fecha_turno);
-        $this->setHorarioTurno($horario_turno);
-        $this->setAdjunto($adjunto);
-    }*/
 
     /**
      * @return mixed
@@ -199,17 +183,17 @@ class Appointment
     /**
      * @return mixed
      */
-    public function getAdjunto()
+    public function getDiagnostico()
     {
-        return $this->adjunto;
+        return $this->diagnostico;
     }
 
     /**
-     * @param mixed $adjunto
+     * @param mixed $diagnostico
      */
-    public function setAdjunto($adjunto)
+    public function setDiagnostico($diagnostico)
     {
-        $this->adjunto = $adjunto;
+        $this->diagnostico = $diagnostico;
     }
 
     /**
@@ -237,79 +221,78 @@ class Appointment
             $msg = "El nombre es requerido <br>";
             $booleano= false;
         }
-        if(!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL) || is_null($this->email) ){
+        if(!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL) || empty($this->email) ){
             $msg .= "No se ha indicado email o el formato no es correcto <br>";
             $booleano= false;
         }
-        if(!filter_var($this->getTelefono(), FILTER_VALIDATE_INT) || is_null($this->telefono)){
+        if(!filter_var($this->getTelefono(), FILTER_VALIDATE_INT) || empty($this->telefono)){
             $msg .= "No se ha indicado telefono o el formato no es correcto <br>";
             $booleano= false;
         }
-        if(!is_null($this->getEdad()) && (!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100)){
+        if(!empty($this->getEdad()) && (!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100)){
             $msg .= "el formato de la edad no es correcto <br>";
             $booleano= false;
         }
-        if(!is_null($this->getTallaCalzado()) && (!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20)){
+        if(!empty($this->getTallaCalzado()) && (!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20)){
             $msg .= "el formato de la talla del calzado no es correcto <br>";
             $booleano= false;
         }
-        if(!is_null($this->getAltura()) && (!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100)){
+        if(!empty($this->getAltura()) && (!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100)){
             $msg .= "el formato de la altura no es correcto <br>";
             $booleano= false;
         }
         //falta validar
-        if(is_null($this->getFechaNacimiento())){
-            $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
+        if(empty($this->getFechaNacimiento())){
+            $msg .= "No se ha indicado la fecha de nacimiento o el formato no es correcto <br>";
             $booleano= false;
         }
-        if (!is_null($this->getColorPelo()) && ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio")){
+        if (!empty($this->getColorPelo()) && ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio")){
             $msg .= "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
             $booleano= false;
         }
         //falta validar
-        if(is_null($this->getFechaTurno())){
+        if(empty($this->getFechaTurno())){
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
         }
         $pattern="/^([0][8-9]|[1][0-7])[\:]([0-5][0-9])$/";
-        if(is_null($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno())){
-            $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
+        if(empty($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno())){
+            $msg .= "No se ha indicado la fecha del turno o el formato no es correcto <br>";
             $booleano= false;
         }
 
         /*
             array(1) {
-              ["adjunto"]=> array(5) {
+              ["diagnostico"]=> array(5) {
                                 ["name"]=> string(31) "http-request-response-basic.png"
                                 ["type"]=> string(9) "image/png" <- COMPAREN CONTRA ESTE CAMPO
                                 ["tmp_name"]=> string(14) "/tmp/phpeiU9V1"
                                 ["error"]=> int(0)
                                 ["size"]=> int(20064)
                             }
-}
+            }
         */
 
-        if (!empty($_FILES["adjunto"]["name"])) {
-            $extension = $_FILES["adjunto"]["type"];
+        if (!empty($_FILES["diagnostico"]["name"])) {
+            $extension = $_FILES["diagnostico"]["type"];
             if ($extension != 'image/png' && $extension != 'image/jpg' && $extension != 'image/jpeg') {
                 $msg = "Solo se permite archivos con extensión JPG y PNG.<br>";
                 $booleano = false;
             }
-            $actual_name = $_FILES["adjunto"]["name"];
+            $actual_name = $_FILES["diagnostico"]["name"];
 
             $i = 0;
             while (file_exists($this->getTargetDir() . $i . '_' . $actual_name)) {
                 $i++;
-                if (!file_exists($this->getTargetDir() . $i . '_' . $actual_name)) {
-                    $exist = false;
-                }
             }
             $actual_name = $i . '_' . $actual_name;
 
             if ($booleano){
+                if (! is_dir($this->getTargetDir()))
+                    mkdir ($this->getTargetDir());
                 $name = $this->getTargetDir() . $actual_name;
-                if (!move_uploaded_file($_FILES["adjunto"]["tmp_name"], $name)) {
-                    throw new Exception (__("No se pudo mover el archivo $actual_name a $name|Could not move $actual_name to $name"));
+                if (!move_uploaded_file($_FILES["diagnostico"]["tmp_name"], $name)) {
+                    throw new Exception (("No se pudo mover el archivo $actual_name a $name|Could not move $actual_name to $name"));
                 }
             }
         }

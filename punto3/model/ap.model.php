@@ -187,42 +187,42 @@ class Appointment
             $msg = "El nombre es requerido <br>";
             $booleano= false;
         }
-        if(!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL) || is_null($this->email) ){
+        if(!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL) || empty($this->email) ){
             $msg .= "No se ha indicado email o el formato no es correcto <br>";
             $booleano= false;
         }
-        if(!filter_var($this->getTelefono(), FILTER_VALIDATE_INT) || is_null($this->telefono)){
+        if(!filter_var($this->getTelefono(), FILTER_VALIDATE_INT) || empty($this->telefono)){
             $msg .= "No se ha indicado telefono o el formato no es correcto <br>";
             $booleano= false;
         }
-        if(!is_null($this->getEdad()) && (!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100)){
+        if(!empty($this->getEdad()) && (!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100)){
             $msg .= "el formato de la edad no es correcto <br>";
             $booleano= false;
         }
-        if(!is_null($this->getTallaCalzado()) && (!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20)){
+        if(!empty($this->getTallaCalzado()) && (!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20)){
             $msg .= "el formato de la talla del calzado no es correcto <br>";
             $booleano= false;
         }
-        if(!is_null($this->getAltura()) && (!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100)){
+        if(!empty($this->getAltura()) && (!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100)){
             $msg .= "el formato de la altura no es correcto <br>";
             $booleano= false;
         }
         //falta validar
-        if(is_null($this->getFechaNacimiento())){
+        if(empty($this->getFechaNacimiento())){
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
         }
-        if (!is_null($this->getColorPelo()) && ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio")){
+        if (!empty($this->getColorPelo()) && ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio")){
             $msg .= "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
             $booleano= false;
         }
         //falta validar
-        if(is_null($this->getFechaTurno())){
+        if(empty($this->getFechaTurno())){
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
         }
         $pattern="/^([0][8-9]|[1][0-7])[\:]([0-5][0-9])$/";
-        if(is_null($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno())){
+        if(empty($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno())){
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
         }
