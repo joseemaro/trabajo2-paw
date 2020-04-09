@@ -4,18 +4,17 @@ namespace App\model;
 
 class Appointment
 {
-    private $nombre;
-    private $email;
-    private $telefono;
-    private $edad;
-    private $talla_calzado;
-    private $altura;
-    private $fecha_nacimiento;
-    private $color_pelo;
-    private $fecha_turno;
-    private $horario_turno;
-    private $diagnostico;
-    private $target_dir = __DIR__ . "\..\uploads\\";
+    public $nombre;
+    public $email;
+    public $telefono;
+    public $edad;
+    public $talla_calzado;
+    public $altura;
+    public $fecha_nacimiento;
+    public $color_pelo;
+    public $fecha_turno;
+    public $horario_turno;
+    public $diagnostico;
 
     public function __construct() {
     }
@@ -196,22 +195,6 @@ class Appointment
         $this->diagnostico = $diagnostico;
     }
 
-    /**
-     * @return string
-     */
-    public function getTargetDir()
-    {
-        return $this->target_dir;
-    }
-
-    /**
-     * @param string $target_dir
-     */
-    public function setTargetDir($target_dir)
-    {
-        $this->target_dir = $target_dir;
-    }
-
     public function getAp()
     {
         $appointment = array(
@@ -292,6 +275,8 @@ class Appointment
         */
 
         if (!empty($_FILES["diagnostico"]["name"])) {
+            $target_dir = __DIR__ . "\..\uploads\\";
+
             $extension = $_FILES["diagnostico"]["type"];
             if ($extension != 'image/png' && $extension != 'image/jpg' && $extension != 'image/jpeg') {
                 $msg = "Solo se permite archivos con extensión JPG y PNG.<br>";
@@ -300,16 +285,16 @@ class Appointment
             $actual_name = $_FILES["diagnostico"]["name"];
 
             $i = 0;
-            while (file_exists($this->getTargetDir() . $i . '_' . $actual_name)) {
+            while (file_exists($target_dir . $i . '_' . $actual_name)) {
                 $i++;
             }
             $actual_name = $i . '_' . $actual_name;
 
             if ($booleano){
-                if (! is_dir($this->getTargetDir()))
-                    mkdir ($this->getTargetDir());
+                if (! is_dir($target_dir))
+                    mkdir ($target_dir);
                 $this->setDiagnostico($actual_name);
-                $name = $this->getTargetDir() . $actual_name;
+                $name = $target_dir . $actual_name;
                 if (!move_uploaded_file($_FILES["diagnostico"]["tmp_name"], $name)) {
                     throw new Exception (("No se pudo mover el archivo $actual_name a $name|Could not move $actual_name to $name"));
                 }
