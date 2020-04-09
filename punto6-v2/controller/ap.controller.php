@@ -1,5 +1,6 @@
 <?php
     namespace App\controller;
+
     use App\model\Appointment;
     use App\model\Serialize;
 
@@ -39,6 +40,6 @@
             //llamar al serialize para que devuelva la lista
             $serialize = new Serialize();
             $list = $serialize->getList();
-            include 'view/list.appointments';
+            include 'view/list.appointments.php';
         }
     }

@@ -212,6 +212,24 @@ class Appointment
         $this->target_dir = $target_dir;
     }
 
+    public function getAp()
+    {
+        $appointment = array(
+            //$this -> id,
+            $this->getNombre(),
+            $this->getEmail(),
+            $this->getTelefono(),
+            $this->getEdad(),
+            $this->getTallaCalzado(),
+            $this->getAltura(),
+            $this->getFechaNacimiento(),
+            $this->getColorPelo(),
+            $this->getFechaTurno(),
+            $this->getHorarioTurno()
+        );
+        return $appointment;
+    }
+
     public function validar()
     {
         $booleano = true;
@@ -308,6 +326,7 @@ class Appointment
             $msg .= "Fecha nacimiento: " . $this->getFechaNacimiento() . "<br>";
             $msg .= "Fecha del turno: " . $this->getFechaTurno() . "<br>";
             $msg .= "Horario del turno: " . $this->getHorarioTurno() . "<br>";
+
             return $msg;
         }else{
             $msg .= "No se registró el turno";

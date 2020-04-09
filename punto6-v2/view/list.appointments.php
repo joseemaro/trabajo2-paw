@@ -18,9 +18,14 @@
         </nav>
     </header>
     <main>
-        <!--<?php foreach ($todo_list->pendientes() as $tarea) : ?>
-            <li><?= $tarea->descripcion ?></li>
-        <?php endforeach ?>-->
+        <section id="appointments">
+            <h1>Turnos</h1>
+            <ul>
+                <?php foreach ($list as $tarea) : ?>
+                    <li><?= $tarea ?></li>
+                <?php endforeach ?>
+            </ul>
+        </section>
     </main>
 </body>
 </html>
