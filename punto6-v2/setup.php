@@ -2,6 +2,8 @@
 
 include 'core/router.php';
 include 'model/ap.model.php';
+include 'model/serialize.model.php';
+include 'model/ap.list.model.php';
 include 'controller/ap.controller.php';
 
 use App\core\Router;
