@@ -25,20 +25,20 @@ class Serialize {
             if (!empty($file)){
                 $json = json_decode($file, true);
                 foreach ($json as $ap){
-                    foreach($ap as $arr){
+                    foreach($ap as $ap){
                         $newAp = new Appointment();
-                        $newAp->setNombre($arr['id']);
-                        $newAp->setNombre($arr['nombre']);
-                        $newAp->setEmail($arr['email']);
-                        $newAp->setTelefono($arr['telefono']);
-                        $newAp->setEdad($arr['edad']);
-                        $newAp->setTallaCalzado($arr['talla_calzado']);
-                        $newAp->setAltura($arr['altura']);
-                        $newAp->setFechaNacimiento($arr['fecha_nacimiento']);
-                        $newAp->setColorPelo($arr['color_pelo']);
-                        $newAp->setFechaTurno($arr['fecha_turno']);
-                        $newAp->setHorarioTurno($arr['horario_turno']);
-                        $newAp->setDiagnostico($arr['diagnostico']);
+                        $newAp->setId($ap['id']);
+                        $newAp->setNombre($ap['nombre']);
+                        $newAp->setEmail($ap['email']);
+                        $newAp->setTelefono($ap['telefono']);
+                        $newAp->setEdad($ap['edad']);
+                        $newAp->setTallaCalzado($ap['talla_calzado']);
+                        $newAp->setAltura($ap['altura']);
+                        $newAp->setFechaNacimiento($ap['fecha_nacimiento']);
+                        $newAp->setColorPelo($ap['color_pelo']);
+                        $newAp->setFechaTurno($ap['fecha_turno']);
+                        $newAp->setHorarioTurno($ap['horario_turno']);
+                        $newAp->setDiagnostico($ap['diagnostico']);
                         //AGREGO LOS TURNOS RECUPERADOS A LA LISTA
                         $list->addAp($newAp);
                     }
@@ -49,19 +49,11 @@ class Serialize {
             //crear archivo si no existe
         }
 
-        //borrar archivo
-        //$arch="";
-        //chmod($dir, 755);
-        // variable $arc está vacia
         $json_string = json_encode($list);
         var_dump($list);
         $arch = fopen ($dir, "w+");
         fwrite($arch, $json_string);
         fclose($arch);
-
-        //ALMACENO LA LISTA DE TURNOS NUEVAMENTE EN EL ARCHIVO
-        //$json_string = json_encode($list);
-        //file_put_contents($dir, $json_string);
     }
 
     public function getList() {
@@ -70,7 +62,6 @@ class Serialize {
         if (file_exists($dir)) {
             $file = file_get_contents($dir);
             $json = json_decode($file, true);
-            //var_dump(json_decode($file, true));
             return $json;
         }
         else {

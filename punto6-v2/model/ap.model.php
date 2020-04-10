@@ -2,6 +2,8 @@
 
 namespace App\model;
 
+use App\model\Serialize;
+
 class Appointment
 {
     public $id;
@@ -215,7 +217,7 @@ class Appointment
     public function getAp()
     {
         $appointment = array(
-            //$this -> id,
+            $this->getId(),
             $this->getNombre(),
             $this->getEmail(),
             $this->getTelefono(),
@@ -324,6 +326,9 @@ class Appointment
 
         if ($booleano) {
             $this->setId(uniqid());
+            $serialize = new Serialize();
+            $serialize->serializar($this);
+
             $msg = "Se registró el turno <br>";
             $msg .= "Gracias " . $this->getNombre() . " la fecha de su turno es el " . $this->getFechaTurno() . " a las " . $this->getHorarioTurno() . " horas. Lo esperamos <br>";
             $msg .= "----------------------------------------------------------------------------------------------------------------------------- <br>";
@@ -337,7 +342,6 @@ class Appointment
             $msg .= "Fecha nacimiento: " . $this->getFechaNacimiento() . "<br>";
             $msg .= "Color de pelo: " . $this->getColorPelo() . "<br>";
             $msg .= "Diagnostico: " . $this->getDiagnostico() . "<br>";
-            var_dump($this->getId());
 
             return $msg;
         }else{

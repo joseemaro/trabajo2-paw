@@ -18,6 +18,7 @@
         public function save ()
         {
             $appointment = new Appointment();
+            //$appointment->setId(uniqid());
             $appointment->setNombre($_POST["nombre"]);
             $appointment->setEmail($_POST["email"]);
             $appointment->setTelefono($_POST["telefono"]);
@@ -29,9 +30,6 @@
             $appointment->setFechaTurno($_POST["fecha_turno"]);
             $appointment->setHorarioTurno($_POST["horario_turno"]);
 
-            //hacer la persistencia
-            $serialize = new Serialize();
-            $serialize->serializar($appointment);
             $respuesta = $appointment->validar();
             include 'view/result.php';
         }
