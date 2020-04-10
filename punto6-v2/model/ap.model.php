@@ -277,7 +277,7 @@ class Appointment
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
         }
-        $pattern="/^([0][8-9]|[1][0-6])[\:]([0-5][0-9])$/";
+        $pattern="/^([0][8-9]|[1][0-6])[\:]([00]|[15]|[30]|[45])$/";
         if(empty($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno())){
             $msg .= "No se ha indicado la fecha del turno o el formato no es correcto <br>";
             $booleano= false;
