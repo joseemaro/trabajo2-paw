@@ -18,7 +18,6 @@
         public function save ()
         {
             $appointment = new Appointment();
-            //$appointment->setId(uniqid());
             $appointment->setNombre($_POST["nombre"]);
             $appointment->setEmail($_POST["email"]);
             $appointment->setTelefono($_POST["telefono"]);
@@ -35,7 +34,6 @@
         }
 
         public function listAp() {
-            //llamar al serialize para que devuelva la lista
             $serialize = new Serialize();
             $list = $serialize->getList();
             include 'view/list.appointments.php';

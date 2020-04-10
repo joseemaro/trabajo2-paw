@@ -20,6 +20,7 @@ class Appointment
     public $diagnostico;
 
     public function __construct() {
+        $this->setId(uniqid());
     }
 
     /**
@@ -227,7 +228,8 @@ class Appointment
             $this->getFechaNacimiento(),
             $this->getColorPelo(),
             $this->getFechaTurno(),
-            $this->getHorarioTurno()
+            $this->getHorarioTurno(),
+            $this->getDiagnostico()
         );
         return $appointment;
     }
@@ -312,11 +314,7 @@ class Appointment
             if ($booleano){
                 if (! is_dir($target_dir))
                     mkdir ($target_dir);
-                //var_dump(substr($actual_name,0,-4));
-                //$this->setDiagnostico(substr($actual_name,0,-4));
                 $this->setDiagnostico($actual_name);
-                //$this->extension = substr($actual_name,-3);
-                //var_dump("extension: $this->extension");
                 $name = $target_dir . $actual_name;
                 if (!move_uploaded_file($_FILES["diagnostico"]["tmp_name"], $name)) {
                     throw new Exception (("No se pudo mover el archivo $actual_name a $name|Could not move $actual_name to $name"));
@@ -325,7 +323,6 @@ class Appointment
         }
 
         if ($booleano) {
-            $this->setId(uniqid());
             $serialize = new Serialize();
             $serialize->serializar($this);
 

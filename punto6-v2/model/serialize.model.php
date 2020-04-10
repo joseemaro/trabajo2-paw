@@ -45,9 +45,6 @@ class Serialize {
                 }
             }
         }
-        else {
-            //crear archivo si no existe
-        }
 
         $json_string = json_encode($list);
         var_dump($list);
@@ -67,7 +64,6 @@ class Serialize {
         else {
             return null;
         }
-        //return $file;
     }
 
 }

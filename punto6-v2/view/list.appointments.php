@@ -20,36 +20,29 @@
     <main>
         <section id="appointments">
             <h1>Turnos</h1>
-            <ul>
-                <?php
-                //TOMA EL ARCHIVO JSON
-                $dir = __DIR__ . "\\..\model\appointmets.json";
-                if (file_exists($dir)) {
-                    $file = file_get_contents($dir);
-                    if (!empty($file)){
-                        $json = json_decode($file, true);
-                        foreach ($json as $ap){
-                            foreach($ap as $arr){
-                                //PARA CADA TURNO SE MUESTRAN LOS DATOS PEDIDOS
-                                echo "INFORMACION DEL TURNO= <br><br>";
-                                echo "id: " . $arr['id'] . "<br>";
-                                echo "Fecha del turno: " . $arr['fecha_turno'] . "<br>";
-                                echo "Horario: " . $arr['horario_turno']. "<br>";
-                                echo "Nombre del paciente: " . $arr['nombre']. "<br>";
-                                echo "Telefono del paciente: " . $arr['telefono']. "<br>";
-                                echo "Email del paciente: " . $arr['email']. "<br>";
-                                echo "aca iria el link";
-                                echo "<br> <br>";
-                            }
-
-                        }
-                    }else {
-                        echo "no hay turnos registrados";
-                    }
-                }
-                else
-                ?>
-            </ul>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th scope="col" id= "">ID</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Nombre del paciente</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($list as $ap) :
+                        foreach ($ap as $arr)?>
+                            <td><a href="/result"><?= $arr['id'] ?></a></td>
+                            <td><?= $arr['fecha_turno'] ?></td>
+                            <td><?= $arr['horario_turno'] ?></td>
+                            <td><?= $arr['nombre'] ?></td>
+                            <td><?= $arr['telefono'] ?></td>
+                            <td><?= $arr['email'] ?></td>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </section>
     </main>
 </body>
