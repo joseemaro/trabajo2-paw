@@ -27,17 +27,18 @@ class Serialize {
                 foreach ($json as $ap){
                     foreach($ap as $arr){
                         $newAp = new Appointment();
+                        $newAp->setNombre($arr['id']);
                         $newAp->setNombre($arr['nombre']);
-                        //var_dump($arr['nombre']);
                         $newAp->setEmail($arr['email']);
                         $newAp->setTelefono($arr['telefono']);
                         $newAp->setEdad($arr['edad']);
-                        $newAp->setTallaCalzado($arr['talla']);
+                        $newAp->setTallaCalzado($arr['talla_calzado']);
                         $newAp->setAltura($arr['altura']);
                         $newAp->setFechaNacimiento($arr['fecha_nacimiento']);
-                        $newAp->setColorPelo($arr['color']);
+                        $newAp->setColorPelo($arr['color_pelo']);
                         $newAp->setFechaTurno($arr['fecha_turno']);
-                        $newAp->setHorarioTurno($arr['horario']);
+                        $newAp->setHorarioTurno($arr['horario_turno']);
+                        $newAp->setDiagnostico($arr['diagnostico']);
                         //AGREGO LOS TURNOS RECUPERADOS A LA LISTA
                         $list->addAp($newAp);
                     }
@@ -66,10 +67,15 @@ class Serialize {
     public function getList() {
         $dir = __DIR__ . "\\appointmets.json";
 
-        $file = file_get_contents($dir);
-        $json = json_decode($file, true);
-        var_dump(json_decode($file, true));
-        return $json;
+        if (file_exists($dir)) {
+            $file = file_get_contents($dir);
+            $json = json_decode($file, true);
+            //var_dump(json_decode($file, true));
+            return $json;
+        }
+        else {
+            return null;
+        }
         //return $file;
     }
 

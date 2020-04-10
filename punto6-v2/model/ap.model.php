@@ -4,6 +4,7 @@ namespace App\model;
 
 class Appointment
 {
+    public $id;
     public $nombre;
     public $email;
     public $telefono;
@@ -17,6 +18,22 @@ class Appointment
     public $diagnostico;
 
     public function __construct() {
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -293,7 +310,11 @@ class Appointment
             if ($booleano){
                 if (! is_dir($target_dir))
                     mkdir ($target_dir);
+                //var_dump(substr($actual_name,0,-4));
+                //$this->setDiagnostico(substr($actual_name,0,-4));
                 $this->setDiagnostico($actual_name);
+                //$this->extension = substr($actual_name,-3);
+                //var_dump("extension: $this->extension");
                 $name = $target_dir . $actual_name;
                 if (!move_uploaded_file($_FILES["diagnostico"]["tmp_name"], $name)) {
                     throw new Exception (("No se pudo mover el archivo $actual_name a $name|Could not move $actual_name to $name"));
@@ -302,15 +323,21 @@ class Appointment
         }
 
         if ($booleano) {
+            $this->setId(uniqid());
             $msg = "Se registró el turno <br>";
             $msg .= "Gracias " . $this->getNombre() . " la fecha de su turno es el " . $this->getFechaTurno() . " a las " . $this->getHorarioTurno() . " horas. Lo esperamos <br>";
             $msg .= "----------------------------------------------------------------------------------------------------------------------------- <br>";
+            $msg .= "Turno: " . $this->getId() . "<br>";
             $msg .= "Nombre: " . $this->getNombre() . "<br>";
             $msg .= "Email: " . $this->getEmail() . "<br>";
             $msg .= "Telefono: " . $this->getTelefono() . "<br>";
+            $msg .= "Edad: " . $this->getEdad() . "<br>";
+            $msg .= "Talla de calzado: " . $this->getTallaCalzado() . "<br>";
+            $msg .= "Altura: " . $this->getAltura() . "<br>";
             $msg .= "Fecha nacimiento: " . $this->getFechaNacimiento() . "<br>";
-            $msg .= "Fecha del turno: " . $this->getFechaTurno() . "<br>";
-            $msg .= "Horario del turno: " . $this->getHorarioTurno() . "<br>";
+            $msg .= "Color de pelo: " . $this->getColorPelo() . "<br>";
+            $msg .= "Diagnostico: " . $this->getDiagnostico() . "<br>";
+            var_dump($this->getId());
 
             return $msg;
         }else{
