@@ -47,7 +47,7 @@
                     <option>castanio</option>
                 </select> </label><br>
             <label> Fecha de turno: <input type="date" name="fecha_turno" required> </label><br>
-            <label> Horiario de turno(hh:min): <input type="time" name="horario_turno" required> </label><br>
+            <label> Horiario de turno(hh:min): <input type="time" min="08:00" max="17:00" step="900" name="horario_turno" required> </label><br>
             <label> Diagnostico <input type="file" name="diagnostico" accept="image/jpeg, image/x-png"> </label><br>
             <input type="submit" value="Enviar" />
             <input type="reset" value="Limpiar"  />
