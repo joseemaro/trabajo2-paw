@@ -47,7 +47,6 @@ class Serialize {
         }
 
         $json_string = json_encode($list);
-        var_dump($list);
         $arch = fopen ($dir, "w+");
         fwrite($arch, $json_string);
         fclose($arch);

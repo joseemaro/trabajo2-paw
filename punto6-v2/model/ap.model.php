@@ -272,13 +272,13 @@ class Appointment
             $msg .= "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
             $booleano= false;
         }
-        //falta validar
-        if(empty($this->getFechaTurno())){
+        $pattern="/^([0][8-9]|[1][0-6])[\:]([00]|[15]|[30]|[45])$/";
+        if(empty($this->getHorarioTurno())) {#} || !preg_match($pattern,$this->getHorarioTurno())){
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
         }
-        $pattern="/^([0][8-9]|[1][0-6])[\:]([00]|[15]|[30]|[45])$/";
-        if(empty($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno())){
+        //falta validar
+        if(empty($this->getFechaTurno())){
             $msg .= "No se ha indicado la fecha del turno o el formato no es correcto <br>";
             $booleano= false;
         }

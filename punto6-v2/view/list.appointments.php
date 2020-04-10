@@ -32,15 +32,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($list as $ap) :
-                        foreach ($ap as $arr)?>
+                <?php
+                var_dump($list);
+                foreach ($list as $ap) :?>
+                    <?php foreach ($ap as $arr) :?>
+                        <tr>
                             <td><a href="/result"><?= $arr['id'] ?></a></td>
                             <td><?= $arr['fecha_turno'] ?></td>
                             <td><?= $arr['horario_turno'] ?></td>
                             <td><?= $arr['nombre'] ?></td>
                             <td><?= $arr['telefono'] ?></td>
                             <td><?= $arr['email'] ?></td>
+                        </tr>
                     <?php endforeach ?>
+                <?php endforeach ?>
                 </tbody>
             </table>
         </section>
