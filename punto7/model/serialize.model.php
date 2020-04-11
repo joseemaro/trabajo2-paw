@@ -16,7 +16,6 @@ class Serialize {
 
         //CREO UNA LISTA DE TURNOS Y AGREGO EL CREADO
         $list = new Appointment_List();
-        $list -> addAp($appointment);
 
         //OBTENGO LA LISTA DE TURNOS ALMACENADA EN EL ARCHIVO
         if (file_exists($dir)) {
@@ -45,6 +44,7 @@ class Serialize {
                 }
             }
         }
+        $list -> addAp($appointment);
 
         $json_string = json_encode($list);
         $arch = fopen ($dir, "w+");

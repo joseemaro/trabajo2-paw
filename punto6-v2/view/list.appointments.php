@@ -23,7 +23,6 @@
             <table border="1">
                 <thead>
                 <tr>
-                    <th scope="col" id= "">ID</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Hora</th>
                     <th scope="col">Nombre del paciente</th>
@@ -37,7 +36,6 @@
                 foreach ($list as $ap) :?>
                     <?php foreach ($ap as $arr) :?>
                         <tr>
-                            <td><a href="/result"><?= $arr['id'] ?></a></td>
                             <td><?= $arr['fecha_turno'] ?></td>
                             <td><?= $arr['horario_turno'] ?></td>
                             <td><?= $arr['nombre'] ?></td>
