@@ -68,7 +68,7 @@ class Serialize {
     public function getAp() {
         $id = $_GET['id'];
         $list = $this->getList();
-        var_dump($list);
+        //var_dump($list);
         if (!is_null($list)){
             foreach ($list as $json) {
                 foreach ($json as $ap) {

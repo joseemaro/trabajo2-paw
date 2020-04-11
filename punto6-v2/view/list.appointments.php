@@ -19,6 +19,7 @@
     </header>
     <main>
         <section id="appointments">
+            <?php if (!is_null($list)) { ?>
             <h1>Turnos</h1>
             <table border="1">
                 <thead>
@@ -32,7 +33,7 @@
                 </thead>
                 <tbody>
                 <?php
-                var_dump($list);
+                //var_dump($list);
                 foreach ($list as $ap) :?>
                     <?php foreach ($ap as $arr) :?>
                         <tr>
@@ -44,6 +45,9 @@
                         </tr>
                     <?php endforeach ?>
                 <?php endforeach ?>
+                <?php } else { ?>
+                    <p> No hay turnos registrados </p>
+                <?php } ?>
                 </tbody>
             </table>
         </section>
