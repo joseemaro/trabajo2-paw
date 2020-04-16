@@ -207,7 +207,6 @@ class Appointment
             $msg .= "el formato de la altura no es correcto <br>";
             $booleano= false;
         }
-        //falta validar
         if(empty($this->getFechaNacimiento())){
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;
@@ -216,7 +215,6 @@ class Appointment
             $msg .= "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
             $booleano= false;
         }
-        //falta validar
         if(empty($this->getFechaTurno())){
             $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
             $booleano= false;

@@ -14,10 +14,8 @@ class Serialize {
     public function serializar($appointment) {
         $dir = __DIR__ . "\\appointmets.json";
 
-        //CREO UNA LISTA DE TURNOS Y AGREGO EL CREADO
         $list = new Appointment_List();
 
-        //OBTENGO LA LISTA DE TURNOS ALMACENADA EN EL ARCHIVO
         if (file_exists($dir)) {
             $file = file_get_contents($dir);
 
@@ -38,7 +36,6 @@ class Serialize {
                         $newAp->setFechaTurno($ap['fecha_turno']);
                         $newAp->setHorarioTurno($ap['horario_turno']);
                         $newAp->setDiagnostico($ap['diagnostico']);
-                        //AGREGO LOS TURNOS RECUPERADOS A LA LISTA
                         $list->addAp($newAp);
                     }
                 }

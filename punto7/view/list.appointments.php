@@ -35,7 +35,6 @@
                 </thead>
                 <tbody>
                 <?php
-                //var_dump($list);
                 foreach ($list as $ap) :?>
                     <?php foreach ($ap as $arr) :?>
                         <tr>
