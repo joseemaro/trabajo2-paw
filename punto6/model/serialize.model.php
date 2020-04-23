@@ -12,7 +12,7 @@ class Serialize {
     }
 
     public function serializar($appointment) {
-        $dir = __DIR__ . "\\appointmets.json";
+        $dir = __DIR__ . "\\appointmets.json"; // Problemas, path atado a Windows. Debe ser generico.
 
         $list = new Appointment_List();
 

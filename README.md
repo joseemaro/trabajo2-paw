@@ -5,12 +5,25 @@ La validación de los datos es muy importante en ambos lados de la comunicación
 Por otro lado, la validación del lado del servidor es todavía más importante porque los datos recibidos no pueden ser considerados confiables. El usuario puede haber realizado algún tipo de manipulación sobre el HTML por lo cual "nunca confíes en el cliente". <br>
 Por ende, la mejor opción es hacer ambas cosas porque, si tiene una aplicación cliente, desde la perspectiva de la experiencia del usuario es mejor anticiparse y no permitir que el usuario escriba información no válida. Y del servidor debe verificarse siempre esto. 
 
-**3. Métodos GET y POST ¿Qué diferencia nota? ¿Cuándo es conveniente usar cada método?** <br>
-El método GET es obtener información del servidor. Traer datos que están en el servidor al cliente. El POST, sin embargo, es enviar información desde el cliente para que sea procesada y actualice o agregue información en el servidor. A modo de ejemplo podemos pensar que, cuando enviamos (request) datos a través del formulario, estos son procesados y luego a través de una redirección devolvemos (response) alguna página con información. <br>
-La diferencia básica entre estos métodos es que las peticiones HTTP del tipo POST suelen proporcionar información adicional del cliente (navegador) al servidor dentro del cuerpo del mensaje. Mientras que, las peticiones GET, incluyen toda la información requerida o necesaria dentro de la URL. <br>
-Podemos concluir que conviene usar el método GET para solicitar información y devolverla como una respuesta y que estaría mal utilizarlo para “actualizar o insertar” información. Además, las llamadas por GET pueden ser cacheadas (historial navegador), indexadas por buscadores o agregar los enlaces a nuestros favoritos, entre otras cosas. Con el método POST sin embargo no se puede hacer esto. POST es conveniente utilizarlo para actualizar datos y en mayor cantidad, no sería correcto solicitar una página a través de POST y mostrarlo como una respuesta, ya que como dijimos le corresponde a GET. <br>
-Por ejemplo: <br>
-*http://localhost:8081//trabajos/tp2/punto3/validaciones.php?nombre=emanuel&email=joseemaro%40hotmail.com&telefono=5565656&edad=33&talla=45&altura=150&fecha_nacimiento=2020-03-13&color=morocho&fecha_turno=2020-03-21&horario_turno=08%3A00*
+**3. Métodos GET y POST ¿Qué diferencia nota? ¿Cuándo es conveniente usar cada método?** 
+
+> El método GET es obtener información del servidor. Traer datos que están en el servidor al cliente. El POST, sin embargo, es enviar información desde el cliente para que sea procesada y actualice o agregue información en el servidor. A modo de ejemplo podemos pensar que, cuando enviamos (request) datos a través del formulario, estos son procesados y luego a través de una redirección devolvemos (response) alguna página con información.
+
+**Comentario:** En términos de HTTP, redirección son respuestas con código de estados 3XX. No seria correcto dicho término en la ultima oración, porque aplica a códigos de estados 2XX sin problema. Se podría reformular diciendo que se construye una respuesta acorde a la petición realizada.
+
+>  La diferencia básica entre estos métodos es que las peticiones HTTP del tipo POST suelen proporcionar información adicional del cliente (navegador) al servidor dentro del cuerpo del mensaje. Mientras que, las peticiones GET, incluyen toda la información requerida o necesaria dentro de la URL.
+
+Esto es correcto, si es necesario enviar información en el cuerpo, se utilziar POST (o en menor medida PUT). Si la petición no tiene cuerpo, GET es el método a utilizar.
+
+> Podemos concluir que conviene usar el método GET para solicitar información y devolverla como una respuesta y que estaría mal utilizarlo para “actualizar o insertar” información. Además, las llamadas por GET pueden ser cacheadas (historial navegador), indexadas por buscadores o agregar los enlaces a nuestros favoritos, entre otras cosas. Con el método POST sin embargo no se puede hacer esto. POST es conveniente utilizarlo para actualizar datos y en mayor cantidad, no sería correcto solicitar una página a través de POST y mostrarlo como una respuesta, ya que como dijimos le corresponde a GET. 
+
+Yo no hablaría de métodos bien o mal usados, sino de métodos adecuados para tal o cual escenario. Un GET puede implicar miles de inserts o update, (por ejemplo, un sistema de de liquidación de haberes, donde se inicie la liquidación puede ser un GET a `/generar_liquidacion` y eso arrastraría un montón de procesos en la base de datos).
+
+Por otro lado, no es que con el POST no se puede. Lo que no sucede en ningún software es que se haga cache del cuerpo de las peticiones (si del cuerpo de las rtas, por ejemplo en el browser). Pero si algún software intermedio quisiera, podría ver el contenido del POST (mientras no se use https).
+
+Las ideas están, pero a veces es una cuestión de como se redactan.
+
+> Por ejemplo: http://localhost:8081//trabajos/tp2/punto3/validaciones.php?nombre=emanuel&email=joseemaro%40hotmail.com&telefono=5565656&edad=33&talla=45&altura=150&fecha_nacimiento=2020-03-13&color=morocho&fecha_turno=2020-03-21&horario_turno=08%3A00*
 
 **4. ¿Qué sucede si 2 usuarios cargan imágenes con el mismo nombre de imagen? ¿Qué mecanismo implementar para evitar que un usuario sobrescriba una imagen con el mismo nombre?** <br>
 Si dos usuarios cargaran 2 imágenes con el mismo nombre, al estar en la misma carpeta, la última sobrescribiría el nombre de la que primero se haya grabado.  <br>
@@ -18,7 +31,9 @@ El mecanismo que implementamos para que una imagen no sobrescriba a otra, es fij
 
 **5. Utilice las herramientas para desarrollador del navegador y observe cómo fueron codificados por el navegador los datos enviados por el navegador en los dos ejercicios anteriores. ¿Qué diferencia nota?** <br>
 
-Como mencionamos anteriormente, en el punto 3 los datos viajan en la URL. En cambio, en el punto 4, los datos (al utilizar el método POST) viajan en el cuerpo del mensaje HTTP y no figuran en la URL.
+>  Como mencionamos anteriormente, en el punto 3 los datos viajan en la URL. En cambio, en el punto 4, los datos (al utilizar el método POST) viajan en el cuerpo del mensaje HTTP y no figuran en la URL.
+
+¿Probaron enviar la imagen vía GET? ¿No se noto nada raro? ¿La imagen como viaja, siendo un archivo binario?
 
 **6. ¿Cómo relaciona la imagen del turno con los datos del turno? Comente alternativas que evaluó y opción elegida.** <br>
 En este punto, en el cual aplicamos un mecanismo de persistencia, básicamente almacenamos en un atributo de la clase correspondiente al turno el nombre de la imagen (todas se encuentran en el mismo directorio). Por lo cual persiste a todos los datos que la clase contiene. <br>

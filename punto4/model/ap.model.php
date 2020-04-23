@@ -15,7 +15,10 @@ class Appointment
     private $fecha_turno;
     private $horario_turno;
     private $diagnostico;
-    private $target_dir = __DIR__ . "\..\uploads\\";
+    private $target_dir = __DIR__ . "\..\uploads\\"; // usan separadores de windows, son incompatibles en linux.
+    // Ademas esto deberia setearse en el setup, y esta clase de alguna manera
+    //  recuperar dicho dato y setearlo (via controller?)
+    //  Dato: Los separadores de directorio de linux '/' funcionan bien en windows.
 
     public function __construct() {
     }
