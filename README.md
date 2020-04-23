@@ -31,7 +31,9 @@ El mecanismo que implementamos para que una imagen no sobrescriba a otra, es fij
 
 **5. Utilice las herramientas para desarrollador del navegador y observe cómo fueron codificados por el navegador los datos enviados por el navegador en los dos ejercicios anteriores. ¿Qué diferencia nota?** <br>
 
-Como mencionamos anteriormente, en el punto 3 los datos viajan en la URL. En cambio, en el punto 4, los datos (al utilizar el método POST) viajan en el cuerpo del mensaje HTTP y no figuran en la URL.
+>  Como mencionamos anteriormente, en el punto 3 los datos viajan en la URL. En cambio, en el punto 4, los datos (al utilizar el método POST) viajan en el cuerpo del mensaje HTTP y no figuran en la URL.
+
+¿Probaron enviar la imagen vía GET? ¿No se noto nada raro? ¿La imagen como viaja, siendo un archivo binario?
 
 **6. ¿Cómo relaciona la imagen del turno con los datos del turno? Comente alternativas que evaluó y opción elegida.** <br>
 En este punto, en el cual aplicamos un mecanismo de persistencia, básicamente almacenamos en un atributo de la clase correspondiente al turno el nombre de la imagen (todas se encuentran en el mismo directorio). Por lo cual persiste a todos los datos que la clase contiene. <br>
