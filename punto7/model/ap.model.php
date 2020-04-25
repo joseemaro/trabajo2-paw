@@ -239,10 +239,21 @@ class Appointment
         $booleano = true;
         $msg = "";
 
-        if(empty($this->getNombre())) {
+        $name = trim($this->getNombre());
+        if ($name !== '') {
+            $pattern = '/^[a-zA-Z, ]*$/';
+            if (!(preg_match($pattern, $name))) {
+                $msg = "El formato del nombre no es correcto <br>";
+                $booleano= false;
+            }
+        } else {
             $msg = "El nombre es requerido <br>";
             $booleano= false;
         }
+        /*if(empty($this->getNombre())) {
+            $msg = "El nombre es requerido <br>";
+            $booleano= false;
+        }*/
         if(!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL) || empty($this->email) ){
             $msg .= "No se ha indicado email o el formato no es correcto <br>";
             $booleano= false;

@@ -19,9 +19,9 @@
     </header>
     <main>
         <form action="/save_appointment" method="post" enctype="multipart/form-data">
-            <label> Nombre: <input type="text" name="nombre" minlength="3" maxlength="30" required pattern="[A-Za-z]+"> </label><br>
-            <label> Email:  <input type="email" name="email" required> </label><br>
-            <label> Telefono: <input type="tel" name="telefono" required> </label><br>
+            <label> Nombre: <input type="text" name="nombre" required> (*)</label><br>
+            <label> Email:  <input type="email" name="email" required> (*)</label><br>
+            <label> Telefono: <input type="tel" name="telefono" required> (*)</label><br>
             <label> Edad: <input type="text" name="edad" maxlength="2" max="99"> </label><br>
             <label> Talla de calzado: <input type="text" name="talla" maxlength="2"></label><br>
             <label> Altura : <input type="range" name="altura" min="100" max="200" step="10" value="150" list="tickmarks"> </label><br>
@@ -38,7 +38,7 @@
                 <option value="190">
                 <option value="200" label="2mts">
             </datalist>
-            <label>Fecha de nacimiento: <input type="date" name="fecha_nacimiento" required></label><br>
+            <label>Fecha de nacimiento: <input type="date" name="fecha_nacimiento" required> (*)</label><br>
             <label>Color de pelo:
                 <select name="color">
                     <option>morocho</option>
@@ -46,12 +46,13 @@
                     <option>colorado</option>
                     <option>castanio</option>
                 </select> </label><br>
-            <label> Fecha de turno: <input type="date" name="fecha_turno" required> </label><br>
-            <label> Horiario de turno(hh:min): <input type="time" min="08:00" max="17:00" step="900" name="horario_turno" required> </label><br>
+            <label> Fecha de turno: <input type="date" name="fecha_turno" required> (*)</label><br>
+            <label> Horiario de turno(hh:min): <input type="time" min="08:00" max="17:00" step="900" name="horario_turno" required> (*)</label><br>
             <label> Diagnostico <input type="file" name="diagnostico" accept="image/jpeg, image/x-png"> </label><br>
             <input type="submit" value="Enviar" />
             <input type="reset" value="Limpiar"  />
         </form>
+        <p> Los campos marcados como (*) son obligatorios </p>
     </main>
     </body>
 </html>
