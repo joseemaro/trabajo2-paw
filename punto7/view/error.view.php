@@ -9,16 +9,15 @@
 </head>
 <body>
 <header>
-    <nav>
-        <ul>
-            <li> <a href="/">Inicio</a> </li>
-            <li> <a href="/new_appointment">Solicitar turno</a> </li>
-            <li> <a href="/list_appointments">Listar turnos</a> </li>
-        </ul>
-    </nav>
+    <?php include 'view/nav.view.php'; ?>
 </header>
 <main>
-    <p> <?= $respuesta ?></p>
+    <h1>No se registró el turno</h1>
+    <ul>
+        <?php foreach ($respuesta as $valor) :?>
+            <li><?= $valor ?></li>
+        <?php endforeach ?>
+    </ul>
 </main>
 </body>
 </html>

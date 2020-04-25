@@ -1,5 +1,5 @@
 <?php
-    namespace App\controller;
+    namespace Appcontroller;
 
     use App\model\Appointment;
     use App\model\Serialize;
@@ -30,7 +30,14 @@
             $appointment->setHorarioTurno($_POST["horario_turno"]);
 
             $respuesta = $appointment->validar();
-            include 'view/result.php';
+            $respuesta_2 = array_shift($respuesta);
+            if ($respuesta_2 == "Correcto") {
+                $ap = $appointment->getAp();
+                include 'view/view.appointment.php';
+            }
+            else {
+                include 'view/error.view.php';
+            }
         }
 
         public function listAp() {
@@ -41,7 +48,7 @@
 
         public function viewAp() {
             $serialize = new Serialize();
-            $json = $serialize->getAp();
+            $ap = $serialize->getAp();
             include 'view/view.appointment.php';
         }
     }

@@ -218,18 +218,18 @@ class Appointment
     public function getAp()
     {
         $appointment = array(
-            $this->getId(),
-            $this->getNombre(),
-            $this->getEmail(),
-            $this->getTelefono(),
-            $this->getEdad(),
-            $this->getTallaCalzado(),
-            $this->getAltura(),
-            $this->getFechaNacimiento(),
-            $this->getColorPelo(),
-            $this->getFechaTurno(),
-            $this->getHorarioTurno(),
-            $this->getDiagnostico()
+            'id' => $this->getId(),
+            'nombre' => $this->getNombre(),
+            'email' => $this->getEmail(),
+            'telefono' => $this->getTelefono(),
+            'edad' => $this->getEdad(),
+            'talla_calzado' => $this->getTallaCalzado(),
+            'altura' => $this->getAltura(),
+            'fecha_nacimiento' => $this->getFechaNacimiento(),
+            'color_pelo' => $this->getColorPelo(),
+            'fecha_turno' => $this->getFechaTurno(),
+            'horario_turno' => $this->getHorarioTurno(),
+            'diagnostico' => $this->getDiagnostico()
         );
         return $appointment;
     }
@@ -237,60 +237,67 @@ class Appointment
     public function validar()
     {
         $booleano = true;
-        $msg = "";
+        $msg = array();
 
         $name = trim($this->getNombre());
         if ($name !== '') {
             $pattern = '/^[a-zA-Z, ]*$/';
             if (!(preg_match($pattern, $name))) {
-                $msg = "El formato del nombre no es correcto <br>";
+                $error = "El formato del nombre no es correcto";
+                array_push($msg, $error);
                 $booleano= false;
             }
         } else {
-            $msg = "El nombre es requerido <br>";
+            $error = "El nombre es requerido";
+            array_push($msg, $error);
             $booleano= false;
         }
-        /*if(empty($this->getNombre())) {
-            $msg = "El nombre es requerido <br>";
-            $booleano= false;
-        }*/
         if(!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL) || empty($this->email) ){
-            $msg .= "No se ha indicado email o el formato no es correcto <br>";
+            $error = "No se ha indicado email o el formato no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
         if(!filter_var($this->getTelefono(), FILTER_VALIDATE_INT) || empty($this->telefono)){
-            $msg .= "No se ha indicado telefono o el formato no es correcto <br>";
+            $error = "No se ha indicado telefono o el formato no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
         if(!empty($this->getEdad()) && (!filter_var($this->getEdad(), FILTER_VALIDATE_INT) || $this->getEdad() < 1 || $this->getEdad() > 100)){
-            $msg .= "el formato de la edad no es correcto <br>";
+            $error = "El formato de la edad no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
         if(!empty($this->getTallaCalzado()) && (!filter_var($this->getTallaCalzado(), FILTER_VALIDATE_INT) || $this->getTallaCalzado() > 60 || $this->getTallaCalzado() < 20)){
-            $msg .= "el formato de la talla del calzado no es correcto <br>";
+            $error = "El formato de la talla del calzado no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
         if(!empty($this->getAltura()) && (!filter_var($this->getAltura(), FILTER_VALIDATE_INT) || $this->getAltura() > 200 || $this->getAltura() < 100)){
-            $msg .= "el formato de la altura no es correcto <br>";
+            $error = "El formato de la altura no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
         if(empty($this->getFechaNacimiento())){
-            $msg .= "No se ha indicado la fecha de nacimiento o el formato no es correcto <br>";
+            $error = "No se ha indicado la fecha de nacimiento o el formato no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
         if (!empty($this->getColorPelo()) && ($this->getColorPelo() != "morocho" && $this->getColorPelo() != "rubio" && $this->getColorPelo() != "colorado" && $this->getColorPelo() != "castanio")){
-            $msg .= "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto <br>";
+            $error = "No se ha indicado color de pelo(morocho,rubio,colorado,casta&ntilde;o) o el formato no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
 
         $pattern="/^([0][8-9]|[1][0-7])[\:]([0-5][0-9])$/";
         if (empty($this->getHorarioTurno()) || !preg_match($pattern,$this->getHorarioTurno()))
         {
-            $msg .= "No se ha indicado el horario o el formato no es correcto <br>";
+            $error = "No se ha indicado el horario o el formato no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
         if(empty($this->getFechaTurno())){
-            $msg .= "No se ha indicado la fecha del turno o el formato no es correcto <br>";
+            $error = "No se ha indicado la fecha del turno o el formato no es correcto";
+            array_push($msg, $error);
             $booleano= false;
         }
 
@@ -307,11 +314,12 @@ class Appointment
         */
 
         if (!empty($_FILES["diagnostico"]["name"])) {
-            $target_dir = __DIR__ . "\..\uploads\\";
+            $target_dir = __DIR__ . "/../uploads/";
 
             $extension = $_FILES["diagnostico"]["type"];
             if ($extension != 'image/png' && $extension != 'image/jpg' && $extension != 'image/jpeg') {
-                $msg = "Solo se permite archivos con extensión JPG y PNG.<br>";
+                $error = "Solo se permite archivos con extensión JPG y PNG.";
+                array_push($msg, $error);
                 $booleano = false;
             }
             $actual_name = $_FILES["diagnostico"]["name"];
@@ -337,23 +345,12 @@ class Appointment
             $serialize = new Serialize();
             $serialize->serializar($this);
 
-            $msg = "Se registró el turno <br>";
-            $msg .= "Gracias " . $this->getNombre() . " la fecha de su turno es el " . $this->getFechaTurno() . " a las " . $this->getHorarioTurno() . " horas. Lo esperamos <br>";
-            $msg .= "----------------------------------------------------------------------------------------------------------------------------- <br>";
-            $msg .= "Turno: " . $this->getId() . "<br>";
-            $msg .= "Nombre: " . $this->getNombre() . "<br>";
-            $msg .= "Email: " . $this->getEmail() . "<br>";
-            $msg .= "Telefono: " . $this->getTelefono() . "<br>";
-            $msg .= "Edad: " . $this->getEdad() . "<br>";
-            $msg .= "Talla de calzado: " . $this->getTallaCalzado() . "<br>";
-            $msg .= "Altura: " . $this->getAltura() . "<br>";
-            $msg .= "Fecha nacimiento: " . $this->getFechaNacimiento() . "<br>";
-            $msg .= "Color de pelo: " . $this->getColorPelo() . "<br>";
-            $msg .= "Diagnostico: " . $this->getDiagnostico() . "<br>";
+            $error = "Correcto";
+            array_push($msg, $error);
 
             return $msg;
         }else{
-            $msg .= "No se registró el turno";
+            array_unshift($msg, "Incorrecto");
             return $msg;
         }
     }

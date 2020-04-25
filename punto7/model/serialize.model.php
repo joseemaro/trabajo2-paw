@@ -12,7 +12,7 @@ class Serialize {
     }
 
     public function serializar($appointment) {
-        $dir = __DIR__ . "\\appointmets.json";
+        $dir = __DIR__ . "/appointmets.json";
 
         $list = new Appointment_List();
 
@@ -51,7 +51,7 @@ class Serialize {
     }
 
     public function getList() {
-        $dir = __DIR__ . "\\appointmets.json";
+        $dir = __DIR__ . "/appointmets.json";
 
         if (file_exists($dir)) {
             $file = file_get_contents($dir);

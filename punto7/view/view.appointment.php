@@ -9,27 +9,21 @@
 </head>
 <body>
 <header>
-    <nav>
-        <ul>
-            <li> <a href="/">Inicio</a> </li>
-            <li> <a href="/new_appointment">Solicitar turno</a> </li>
-            <li> <a href="/list_appointments">Listar turnos</a> </li>
-        </ul>
-    </nav>
+    <?php include 'view/nav.view.php'; ?>
 </header>
 <main>
     <h1>Datos Personales</h1>
-    <label> Nombre </label><?= $json['nombre']?> <br>
-    <label> Email </label><?= $json['email']?> <br>
-    <label> Teléfono </label><?= $json['telefono']?> <br>
-    <label> Edad </label><?= $json['edad']?> <br>
-    <label> Talla de calzado </label><?= $json['talla_calzado']?> <br>
-    <label> Altura </label><?= $json['altura']?> <br>
-    <label> Fecha de nacimiento </label><?= $json['fecha_nacimiento']?> <br>
-    <label> Color de pelo </label><?= $json['color_pelo']?> <br>
+    <label> Nombre </label><?= $ap['nombre']?> <br>
+    <label> Email </label><?= $ap['email']?> <br>
+    <label> Teléfono </label><?= $ap['telefono']?> <br>
+    <label> Edad </label><?= $ap['edad']?> <br>
+    <label> Talla de calzado </label><?= $ap['talla_calzado']?> <br>
+    <label> Altura </label><?= $ap['altura']?> <br>
+    <label> Fecha de nacimiento </label><?= $ap['fecha_nacimiento']?> <br>
+    <label> Color de pelo </label><?= $ap['color_pelo']?> <br>
     <h1>Datos del turno</h1>
-    <label> Fecha del turno </label><?= $json['fecha_turno']?> <br>
-    <label> Horario del turno </label><?= $json['horario_turno']?> <br>
+    <label> Fecha del turno </label><?= $ap['fecha_turno']?> <br>
+    <label> Horario del turno </label><?= $ap['horario_turno']?> <br>
 </main>
 </body>
 </html>
